@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:component-scan base-package="com.bit.**.service"/>
+	<!-- 
+	<bean id="ds" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.80:1521:xe"/>
+		<property name="username" value="bitboard"/>
+		<property name="password" value="bitboard"/>
+	</bean> -->
+	
+	<bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/bit"/>
+	</bean>
+	
+	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds"/>
+		<property name="configLocation" value="classpath:com/bit/config/mybatis/configuration.xml"/>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/bit/config/mybatis/board_admin.xml</value>
+				<value>classpath:com/bit/config/mybatis/album.xml</value>
+				<value>classpath:com/bit/config/mybatis/bbs.xml</value>
+				<value>classpath:com/bit/config/mybatis/board.xml</value>
+				<value>classpath:com/bit/config/mybatis/common.xml</value>
+				<value>classpath:com/bit/config/mybatis/memo.xml</value>
+				<value>classpath:com/bit/config/mybatis/reboard.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="ssfb"/>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+		
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

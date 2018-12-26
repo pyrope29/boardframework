@@ -1,0 +1,9 @@
+*java DBCP (database connection pooling)*
+		Context ictx = new InitialContext();
+			//컨텍스트를 얻어내기
+		Context rctx = (Context) ictx.lookUp("java:comp/env");
+		//java:comp/env를 찾아 initialContext를 찾기
+		DataSource ds = (DataSource) rctx.lookUp("jdbc/bit");
+		
+		Connection conn = ds.getConnection();
+		//데이터베이스 연결(동기식)

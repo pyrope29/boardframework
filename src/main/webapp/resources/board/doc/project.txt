@@ -1,0 +1,75 @@
+pj : boardframework
+	- src
+		- com.bit.board.admin.controller
+			BoardAdminController.java
+		
+		- com.bit.board.admin.dao
+			BoardAdminDao.java (I)
+		
+		- com.bit.board.admin.service
+			BoardAdminService.java (I)
+			BoardAdminServiceImpl.java
+		
+		- com.bit.board.admin.model
+			BoardTypeDto.java
+			CategoryDto.java
+			BoardListDto.java
+		
+		- com.bit.board.controller
+			AlbumController.java
+			BbsController.java
+			BoardController.java
+			ReboardController.java
+			MemoController.java
+		
+		- com.bit.board.dao
+			AlbumDao.java (I)
+			BbsDao.java (I)
+			BoardDao.java (I)
+			ReboardDao.java (I)
+			MemoDao.java (I)
+		
+		- com.bit.board.service
+			AlbumService.java (I)
+			AlbumServiceImpl.java
+			BbsService.java (I)
+			BbsServiceImpl.java
+			BoardService.java (I)
+			BoardServiceImpl.java
+			ReboardService.java (I)
+			ReboardServiceImpl.java
+			MemoService.java (I)
+			MemoServiceImpl.java
+		
+		- com.bit.board.common.dao
+			CommonDao.java (I)
+		
+		- com.bit.board.common.service
+			CommonService.java (I)
+			CommonServiceImpl.java
+		
+		- com.bit.board.model
+			AlbumDto.java
+			BbsDto.java
+			BoardDto.java
+			ReboardDto.java
+			MemoDto.java
+		
+		- com.bit.config.mybatis
+		
+		- com.bit.util
+			PageNavigation.java
+	
+	- web
+		- css, img, js
+		- doc : 각종문서.(참고문서)
+		----------------------- jsp ------------------------
+		- common : public.jsp
+		- admin : 게시판 관리자
+		    - boardmenu.jsp
+		- album : 사진게시판
+		- bbs : 자료실
+		- board : 공지사항, 한줄게시판, 일반게시판
+		- reboard : 답변게시판 (reply.jsp)
+		
+		- index.jsp
