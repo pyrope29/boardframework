@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/WEB-INF/views/common/public.jsp"%>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<nav class="navbar navbar-default navbar-fixed-top">
 	    <div class="container-fluid">
@@ -31,17 +32,18 @@
 	                <li><a href="#">공지사항</a></li>
 	            </ul>
 	            <ul class="nav navbar-nav navbar-right">
-					<c:if test="${id != null}">
-		                <li><a href="${root}/member/logout">로그아웃 (${id})</a></li>
-		                <li class="dropdown">
-		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">설정 <b class="caret"></b></a>
-		                    <ul class="dropdown-menu">
-		                        <li><a href="${root}/member/mypage">개인정보</a></li>
-		                    </ul>
-		                </li>
+					<c:if test="${userInfo!=null}">
+		                <li><a href="${root}/member/logout">로그아웃</a></li>
+		               		<li class="dropdown">
+                 		 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">설정 <b class="caret"></b></a>
+                  				  <ul class="dropdown-menu">
+                       			 		<li><a href="${root}/member/mypage">개인정보</a></li>
+                   	 				</ul>
+                			</li>
 	            	 </c:if>
-	            	 <c:if test="${id == null}">
-	            	 	<li><a href="${root}/member/login">로그인</a></li>
+            
+	            	 <c:if test="${userInfo==null}">
+	            	 	<li><a href="${root}/member/login.bit">로그인</a></li>
 		                <li><a href="${root}/member/join.bit">회원가입 </a></li>
 	            	 </c:if>
 	            </ul>

@@ -4,7 +4,6 @@
 MemberDto memberDto = new MemberDto();
 memberDto.setId("2");
 memberDto.setName("2");
-memberDto.setEmail("2.com");
 
 session.setAttribute("userInfo", memberDto);
 

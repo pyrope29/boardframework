@@ -6,7 +6,7 @@
 
 <div class="container-fluid" style="margin-top:50px">			<!-- div container start -->
 	<div class="row">			<!-- div row start -->
-		<div class="col-sm-3">	<!-- div -lg-3 start -->
+		<div class="col-lg-3">	<!-- div -lg-3 start -->
 			<div id="boardmenu" class="menu_list" align="center">
 				<c:set var="idx" value="0"/>
 				<c:forEach varStatus="i" var="board" items="${menu}">
@@ -23,4 +23,4 @@
 					</c:if>
 				</c:forEach>
 			</div>
-		</div> <!-- div -sm3 end -->	
+		</div> <!-- div lg 3 end -->	

@@ -32,14 +32,21 @@ public class ReboardController {
 
 	@RequestMapping("list.bit")
 	public ModelAndView list(@RequestParam Map<String, String> param) {
+		System.out.println(param.toString());
+		
 		ModelAndView mav = new ModelAndView();
 		List<ReboardDto> list = reboardService.listArticle(param);
+		System.out.println("22");
 		PageNavigation navigation = commonService.makePageNavigation(param);
+		System.out.println("33");
 		navigation.setRoot("/board");
+		System.out.println("44");
 		navigation.makeNavigator();
-		
+		System.out.println("55");
 		mav.addObject("articlelist", list);
+		System.out.println("66");
 		mav.addObject("navigator", navigation);
+		System.out.println("77");
 		mav.setViewName("reboard/list");
 		return mav;
 	}
@@ -51,6 +58,7 @@ public class ReboardController {
 	
 	@RequestMapping(value="write.bit", method=RequestMethod.POST)
 	public String write(ReboardDto reboardDto, HttpSession session, @RequestParam Map<String, String> param, Model model) {
+		
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		if(memberDto != null) {
 			reboardDto.setId(memberDto.getId());

@@ -28,8 +28,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberDto selectMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.getMapper(MemberDao.class).selectMember(id);
 	}
 
 	@Override

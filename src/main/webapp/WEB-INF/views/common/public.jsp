@@ -27,3 +27,7 @@
 	<input type="hidden" id="word" name="word" value="${word}">
 	<input type="hidden" id="seq" name="seq" value="">
 	</form>
+
+<script src="${root}/js/jquery-2.1.0.js"></script>
+<script src="${root}/js/bootstrap.min.js"></script>
+<script src="${root}/js/bootswatch.js"></script>

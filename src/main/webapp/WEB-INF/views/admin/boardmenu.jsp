@@ -3,9 +3,6 @@
 <%@ include file="/WEB-INF/views/common/public.jsp"%>   
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BitCamp</title>
 <style type="text/css">
 .menu_list { width: 200px; }
@@ -43,11 +40,10 @@ $(document).ready(function() {
 	});
 });
 </script>
-</head>
-<body>
+
 <%@ include file="/WEB-INF/views/nav.jsp"%>   
 <%@ include file="/WEB-INF/views/side.jsp"%>   
-		 <div class="col-sm-9">
+		 <div class="col-lg-9">
 		 </div>
 	 </div><!-- div row end -->
 <%@ include file="/WEB-INF/views/footer.jsp"%>  
