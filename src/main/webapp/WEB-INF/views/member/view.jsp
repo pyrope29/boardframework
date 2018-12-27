@@ -13,8 +13,6 @@
             <div class="page-header2">
                 <h3>회원정보</h3>
             </div>
-
-
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <colgroup>

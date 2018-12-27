@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+</div> <!-- div side container-fluid end -->
  	<div class="navbar-fixed-bottom">
  	 <footer>
         <div class="row">

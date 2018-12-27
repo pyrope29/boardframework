@@ -1,7 +1,6 @@
 package com.bit.board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -93,21 +92,20 @@ public class MemberController {
 		return "result";
 	}
 	
-	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage() {
+	@RequestMapping(value = "member", method = RequestMethod.GET)
+	public String mypage(HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto member = memberService.selectMember(memberDto.getId());
+		
 		return "member/view";
 	}
+	 //화면뿌리기 read
+	 
 
-	/*
-	 * //화면뿌리기 read
-	 * 
-	 * @RequestMapping(value="member/{seq}", method=RequestMethod.GET) public String
-	 * viewMember(@PathVariable(value="seq") int seq) { String memolist =
-	 * memberService.listMemo(seq); return memolist; }
-	 * 
-	 * //update
-	 * 
-	 * @RequestMapping(value="member", method=RequestMethod.PUT) public String
+	 
+	 //update
+	 
+	/* * @RequestMapping(value="member", method=RequestMethod.PUT) public String
 	 * modifyMember(@RequestBody MemoDto memoDto, HttpSession session) { MemberDto
 	 * memberDto = (MemberDto) session.getAttribute("userInfo"); if(memberDto !=
 	 * null) { memoDto.setId(memberDto.getId());
@@ -118,6 +116,5 @@ public class MemberController {
 	 * @RequestMapping(value="member/{seq}/{mseq}", method=RequestMethod.DELETE)
 	 * public String deleteMember(@PathVariable(value="seq")ㅊ int
 	 * seq, @PathVariable(value="mseq") int mseq) { memberService.deleteMemo(mseq);
-	 * String memolist = memberService.listMemo(seq); return memolist; }
-	 */
+	 * String memolist = memberService.listMemo(seq); return memolist; }*/
 }
