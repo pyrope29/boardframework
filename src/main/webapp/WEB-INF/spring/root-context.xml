@@ -33,6 +33,7 @@
 				<value>classpath:com/bit/config/mybatis/common.xml</value>
 				<value>classpath:com/bit/config/mybatis/memo.xml</value>
 				<value>classpath:com/bit/config/mybatis/reboard.xml</value>
+				<value>classpath:com/bit/config/mybatis/member.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -48,15 +49,3 @@
 	<tx:annotation-driven transaction-manager="txManager"/>
 		
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-

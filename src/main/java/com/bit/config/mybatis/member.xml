@@ -6,18 +6,18 @@
 <mapper namespace="com.bit.board.dao.MemberDao">
 
 	<insert id="insertMember" parameterType="memberDto">
-		INSERT INTO BOARD_MEMBER (ID,NAME,PW,EMAIL,BDATE,GENDER,PNUM,ZCODE,ADDR) 
- 			VALUES (#{ID},#{NAME},#{PW},#{EMAIL},SYSDATE,#{GENDER},#{PNUM},#{ZCODE},#{ADDR})
+		INSERT INTO BOARD_MEMBER (ID,NAME,PW,BDATE,GENDER,PNUM,ZCODE,ADDR) 
+ 			VALUES (#{id},#{name},#{pw},TO_DATE(#{bdate},'YY/MM/DD'),#{gender},#{pnum},#{zcode},#{addr})
 	</insert>
 
 	<update id="updateMember" parameterType="memberDto">
 		UPDATE BOARD_MEMBER 
-			SET ID=#{ID},NAME=#{NAME},PW=#{PW},EMAIL=#{EMAIL},BDATE=#{BDATE},GENDER=#{GENDER},PNUM=#{PNUM},ZCODE=#{ZCODE},ADDR=#{ADDR} 
+			SET ID=#{id},NAME=#{name},PW=#{pw},BDATE=#{bdate},GENDER=#{GENDER},PNUM=#{pnum},ZCODE=#{zcode},ADDR=#{addr} 
 	</update>
 
 	<select id="selectMember" parameterType="String" resultType="memberDto">
 		SELECT * FROM BOARD_MEMBER 
-			WHERE ID=#{ID}
+			WHERE ID=#{id}
 	</select>
 
 	<select id="selectAllMember" resultType="memberDto">

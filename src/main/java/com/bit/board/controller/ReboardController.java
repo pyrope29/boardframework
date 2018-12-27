@@ -55,7 +55,7 @@ public class ReboardController {
 		if(memberDto != null) {
 			reboardDto.setId(memberDto.getId());
 			reboardDto.setName(memberDto.getName());
-			reboardDto.setEmail(memberDto.getEmail());
+			//reboardDto.setEmail(memberDto.getEmail());
 			
 			int seq = reboardService.writeArticle(reboardDto);
 			if(seq != 0) {
@@ -95,7 +95,7 @@ public class ReboardController {
 		if(memberDto != null) {
 			reboardDto.setId(memberDto.getId());
 			reboardDto.setName(memberDto.getName());
-			reboardDto.setEmail(memberDto.getEmail());
+			//reboardDto.setEmail(memberDto.getEmail());
 			
 			int seq = reboardService.replyArticle(reboardDto);
 			if(seq != 0) {

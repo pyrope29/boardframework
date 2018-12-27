@@ -1,19 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BitCamp</title>
-    <link href="./css/bootstrap.css" rel="stylesheet">
-    <link href="./css/bootswatch.min.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-
+<%@ include file="/WEB-INF/views/common/public.jsp"%> 
 <!-- Main Navigation ========================================================================================== -->
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -27,53 +15,49 @@
         </div>
     </div>
 </div>
-
 <!-- Container ======================================================================================= -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="page-header">
                 <h2 id="container">회원 가입하기</h2>
             </div>
-
             <div class="well">
                 <p>회원가입을 위해 아래 내용들을 작성해 주세요.</p>
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="${root}/member" method="post">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">아이디</label>
-
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="아이디">
+                                <input type="text" class="form-control" placeholder="아이디" name="id" id="id">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">이름</label>
 
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="이름">
+                                <input type="text" class="form-control" placeholder="이름" name="name" id="name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">비밀번호</label>
 
                             <div class="col-lg-10">
-                                <input type="password" class="form-control" placeholder="비밀번호">
+                                <input type="password" class="form-control" placeholder="비밀번호" name="pw" id="pw">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">비밀번호 확인</label>
 
                             <div class="col-lg-10">
-                                <input type="password" class="form-control" placeholder="비밀번호 확인">
+                                <input type="password" class="form-control" placeholder="비밀번호 확인" id="pwCheck">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">생년월일</label>
 
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="생년월일 (입력 예: 2000-12-01)">
+                                <input type="text" class="form-control" placeholder="생년월일 (입력 예: 2000-12-01)" name="bdate">
                             </div>
                         </div>
                         <div class="form-group">
@@ -82,13 +66,13 @@
                             <div class="col-lg-10">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                        <input type="radio" name="gender" id="optionsRadios1" value="1" checked="">
                                         남자
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        <input type="radio" name="gender" id="optionsRadios2" value="2">
                                         여자
                                     </label>
                                 </div>
@@ -98,21 +82,21 @@
                             <label class="col-lg-2 control-label">전화번호</label>
 
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="전화번호">
+                                <input type="text" class="form-control" placeholder="전화번호" name="pnum">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">우편번호</label>
 
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="우편번호">
+                                <input type="text" class="form-control" placeholder="우편번호" name="zcode">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">주소</label>
 
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="주소">
+                                <input type="text" class="form-control" placeholder="주소" name="addr">
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,9 +109,7 @@
                 </form>
             </div>
         </div>
-
     </div>
-
 <!-- Footer ========================================================================================== -->
     <footer>
         <div class="row">
@@ -147,8 +129,10 @@
     </footer>
 </div>
 
-<script src="./js/jquery-2.1.0.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/bootswatch.js"></script>
+<script src="${root}/js/jquery-2.1.0.js"></script>
+<script src="${root}/js/bootstrap.min.js"></script>
+<script src="${root}/js/bootswatch.js"></script>
 </body>
 </html>
+    
+    

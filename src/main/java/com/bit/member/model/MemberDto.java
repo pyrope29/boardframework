@@ -6,12 +6,11 @@ public class MemberDto {
 	private String id;
 	private String name;
 	private String pw;
-	private String email;
 	private String addr;
 	private String gender; // 1 남자 2 여자
 	private String pnum; // 하이픈인경우가 있어 String
 	private String zcode; // 앞자리 0인경우가 있어 String
-	private Date bdate;
+	private String bdate;
 
 	public String getId() {
 		return id;
@@ -37,13 +36,6 @@ public class MemberDto {
 		this.pw = pw;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getAddr() {
 		return addr;
@@ -77,11 +69,19 @@ public class MemberDto {
 		this.zcode = zcode;
 	}
 
-	public Date getBdate() {
+	public String getBdate() {
 		return bdate;
 	}
 
-	public void setBdate(Date bdate) {
+	public void setBdate(String bdate) {
 		this.bdate = bdate;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", name=" + name + ", pw=" + pw + ", addr=" + addr
+				+ ", gender=" + gender + ", pnum=" + pnum + ", zcode=" + zcode + ", bdate=" + bdate + "]";
+	}
+	
+	
 }
