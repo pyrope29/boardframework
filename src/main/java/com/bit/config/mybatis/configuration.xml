@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
-
 	<typeAliases>
 		<typeAlias alias="boardListDto" type="com.bit.board.admin.model.BoardListDto"/>
 		<typeAlias alias="boardTypeDto" type="com.bit.board.admin.model.BoardTypeDto"/>
@@ -16,5 +15,4 @@
 		<typeAlias alias="memoDto" type="com.bit.board.model.MemoDto"/>
 		<typeAlias alias="memberDto" type="com.bit.member.model.MemberDto"/>
 	</typeAliases>
-
 </configuration>
