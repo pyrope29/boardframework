@@ -36,6 +36,24 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	@RequestMapping(value = "modify.bit", method = RequestMethod.GET)
+	public String modify(Model model, HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto member = memberService.selectMember(memberDto.getId());
+		
+		model.addAttribute("id", member.getId());
+		model.addAttribute("name", member.getName());
+		model.addAttribute("bdate", member.getBdate().substring(0, 10));
+		model.addAttribute("gender", member.getGender());
+		model.addAttribute( "pnum", member.getPnum());
+		if(member.getAddr() != null) {
+			model.addAttribute("addr", member.getAddr());
+		} else {
+			model.addAttribute("addr", "");
+		}
+		return "member/modify";
+	}
+	
 	@RequestMapping(value = "login.bit", method = RequestMethod.GET)
 	public String login() {
 		return "member/login";
@@ -44,20 +62,24 @@ public class MemberController {
 	@RequestMapping(value = "login.bit", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String, String> param, Model model, HttpSession session) {
 		String id = param.get("id");
-		
-		MemberDto member = new MemberDto();
-		member.setId(id);
-		member.setName(param.get("name"));
-		
-		session.setAttribute("userInfo", member);
-		
+		String pw = param.get("pw");
 		MemberDto memberDto = memberService.selectMember(id);
+		
+		
 	
 		if (memberDto != null) {
-			model.addAttribute("msg", id +" 님 환영합니다");
-			model.addAttribute("url", "../badmin/boardmenu.bit");
+			
+			if(memberDto.getPw().equals(pw)) {
+				model.addAttribute("msg", id +" 님 환영합니다");
+				session.setAttribute("userInfo", memberDto);
+				System.out.println(memberDto.toString() + "님이 로그인함");
+				model.addAttribute("url", "../badmin/boardmenu.bit");
+			} else {
+				model.addAttribute("msg", "비밀번호가 잘못되었습니다");
+				model.addAttribute("url", "login.bit");
+			}
 		} else {
-			model.addAttribute("msg", "아이디 혹은 비밀번호가 잘못되었습니다");
+			model.addAttribute("msg", "아이디가 잘못되었습니다");
 			model.addAttribute("url", "login.bit");
 		}
 		return "result";
@@ -92,10 +114,31 @@ public class MemberController {
 		return "result";
 	}
 	
-	@RequestMapping(value = "member", method = RequestMethod.GET)
-	public String mypage(HttpSession session) {
+	@RequestMapping(method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		System.out.println(memberDto.toString() + "오라오랑");
 		MemberDto member = memberService.selectMember(memberDto.getId());
+		
+		member.toString();
+		
+		model.addAttribute("id", member.getId());
+		model.addAttribute("name", member.getName());
+		model.addAttribute("bdate", member.getBdate().substring(0, 10));
+		
+		if(member.getGender().equals("1")) {
+			model.addAttribute("gender", "남자");
+		} else {
+			model.addAttribute("gender", "여자");
+		}
+		
+		
+		model.addAttribute( "pnum", member.getPnum());
+		if(member.getAddr() != null) {
+			model.addAttribute("addr", member.getAddr());
+		} else {
+			model.addAttribute("addr", "");
+		}
 		
 		return "member/view";
 	}
@@ -105,7 +148,7 @@ public class MemberController {
 	 
 	 //update
 	 
-	/* * @RequestMapping(value="member", method=RequestMethod.PUT) public String
+	/* * @RequestMapping(method=RequestMethod.PUT) public String
 	 * modifyMember(@RequestBody MemoDto memoDto, HttpSession session) { MemberDto
 	 * memberDto = (MemberDto) session.getAttribute("userInfo"); if(memberDto !=
 	 * null) { memoDto.setId(memberDto.getId());

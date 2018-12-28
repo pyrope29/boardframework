@@ -7,20 +7,24 @@
 
 	<insert id="insertMember" parameterType="memberDto">
 		INSERT INTO BOARD_MEMBER (ID,NAME,PW,BDATE,GENDER,PNUM,ZCODE,ADDR) 
- 			VALUES (#{id},#{name},#{pw},TO_DATE(#{bdate},'YY/MM/DD'),#{gender},#{pnum},#{zcode},#{addr})
+ 			VALUES (#{id},#{name},#{pw},TO_DATE(#{bdate},'YY/MM/DD'),
+ 			#{gender},#{pnum},#{zcode},#{addr})
 	</insert>
 
 	<update id="updateMember" parameterType="memberDto">
 		UPDATE BOARD_MEMBER 
-			SET ID=#{id},NAME=#{name},PW=#{pw},BDATE=#{bdate},GENDER=#{GENDER},PNUM=#{pnum},ZCODE=#{zcode},ADDR=#{addr} 
+			SET NAME=#{name},PW=#{pw},BDATE=TO_CHAR(#{bdate}, 'YY/MM/DD'),
+			GENDER=#{GENDER},PNUM=#{pnum},ZCODE=#{zcode},ADDR=#{addr} 
+				WHERE ID=#{id} 
 	</update>
 
 	<select id="selectMember" parameterType="String" resultType="memberDto">
-		SELECT * FROM BOARD_MEMBER 
+		SELECT * FROM BOARD_MEMBER
 			WHERE ID=#{id}
 	</select>
 
 	<select id="selectAllMember" resultType="memberDto">
 		SELECT * FROM BOARD_MEMBER
 	</select>
+
 </mapper>
