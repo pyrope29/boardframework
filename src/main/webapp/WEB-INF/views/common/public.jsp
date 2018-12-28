@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="root" value="${pageContext.request.contextPath}"/> 
 <c:set var="bcode" value="${param.bcode}"/> 
 <c:set var="pg" value="${param.pg}"/> 
@@ -18,6 +19,21 @@
 	
 	<link href="${root}/css/bootstrap.css" rel="stylesheet">
 	<link href="${root}/css/bootswatch.min.css" rel="stylesheet">
+	
+	
+<style>
+.validateInfo{
+	font-size:13px;
+	color:red;
+}
+.validate{
+	display:none;
+}
+#validateNullId{
+	display:none;
+}
+
+</style>
 </head>
 <body>
 	<form id="commonForm" method="get" action="">
