@@ -14,4 +14,6 @@ public interface MemberDao {
 
 	List<MemberDto> selectAllMember();
 
+	int deleteMember(String id);
+
 }

@@ -36,17 +36,11 @@ public class ReboardController {
 		
 		ModelAndView mav = new ModelAndView();
 		List<ReboardDto> list = reboardService.listArticle(param);
-		System.out.println("22");
 		PageNavigation navigation = commonService.makePageNavigation(param);
-		System.out.println("33");
 		navigation.setRoot("/board");
-		System.out.println("44");
 		navigation.makeNavigator();
-		System.out.println("55");
 		mav.addObject("articlelist", list);
-		System.out.println("66");
 		mav.addObject("navigator", navigation);
-		System.out.println("77");
 		mav.setViewName("reboard/list");
 		return mav;
 	}

@@ -9,6 +9,8 @@ public interface MemberService {
 	int insertMember(MemberDto memberDto);
 
 	int updateMember(MemberDto memberDto);
+	
+	int deleteMember(String id);
 
 	MemberDto selectMember(String id);
 

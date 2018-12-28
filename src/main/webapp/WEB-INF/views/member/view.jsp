@@ -2,8 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>   
 <%@ include file="/WEB-INF/views/nav.jsp"%>   
+<script>
+	$(document).ready(function(){
+		$("#delete").click(function(){
+			if(confirm("정말 탈퇴하시겠습니까?")){
+				window.location = $(this).attr('href');
+			} else {
+				return false;
+			}
+		});
+	});
+	
 
-
+</script>
 <!-- Container ======================================================================================= -->
 <div class="container">
 	<div class="row">
@@ -44,12 +55,10 @@
                 </table>
             </div>
 
-
-            
             <div class="pull-right">
                 <a href="${root}/member/modify.bit" class="btn btn-success btn-default">수정</a>
-                <a href="#" class="btn btn-large btn-default">탈퇴</a>
-                <a href="./list.html" class="btn btn-large btn-default">목록</a>
+                <a href="${root}/member/delete.bit" class="btn btn-large btn-default" id="delete">탈퇴</a>
+                <a href="${root}/member/list.bit" class="btn btn-large btn-default">목록</a>
             </div>
 
         </div>

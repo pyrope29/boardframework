@@ -1,7 +1,5 @@
 package com.bit.member.model;
 
-import java.util.Date;
-
 public class MemberDto {
 	private String id;
 	private String name;
@@ -11,6 +9,8 @@ public class MemberDto {
 	private String pnum; // 하이픈인경우가 있어 String
 	private String zcode; // 앞자리 0인경우가 있어 String
 	private String bdate;
+	private String regdate;
+	private String sts;
 
 	public String getId() {
 		return id;
@@ -35,7 +35,6 @@ public class MemberDto {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-
 
 	public String getAddr() {
 		return addr;
@@ -77,11 +76,27 @@ public class MemberDto {
 		this.bdate = bdate;
 	}
 
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
+	public String getSts() {
+		return sts;
+	}
+
+	public void setSts(String sts) {
+		this.sts = sts;
+	}
+
 	@Override
 	public String toString() {
-		return "MemberDto [id=" + id + ", name=" + name + ", pw=" + pw + ", addr=" + addr
-				+ ", gender=" + gender + ", pnum=" + pnum + ", zcode=" + zcode + ", bdate=" + bdate + "]";
+		return "MemberDto [id=" + id + ", name=" + name + ", pw=" + pw + ", addr=" + addr + ", gender=" + gender
+				+ ", pnum=" + pnum + ", zcode=" + zcode + ", bdate=" + bdate + ", regdate=" + regdate + ", sts=" + sts
+				+ "]";
 	}
-	
-	
+
 }

@@ -32,8 +32,12 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<MemberDto> selectAllMember() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.getMapper(MemberDao.class).selectAllMember();
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		return sqlSession.getMapper(MemberDao.class).deleteMember(id);
 	}
 
 }
