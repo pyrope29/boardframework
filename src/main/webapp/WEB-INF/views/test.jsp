@@ -2,17 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<script type="text/javascript">
-$(function(){
-	$("#myModal").modal("show");
-	
-	$("#myModal").on('hidden.bs.modal', function(){
-		location.href="${url}";
-	});
-});
-
-</script>
 <style type="text/css">
 .modal-header {
 	padding: 0;
@@ -61,29 +50,33 @@ $(function(){
 }
 
 .error-btn {
-	margin-top: 20px;
 	text-align: center;
 }
 </style>
 <div class="container">
+
+	<!-- header -->
 	<div class="modal fade" role="dialog" id="myModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="error-header">
 
-						<h2 class="error-heading modal-title">Error</h2>
+						<h2 class="error-heading modal-title">에러</h2>
 					</div>
 				</div>
 				<div class="modal-body error-body">
-					<h4>${msg}</h4>
-					<p></p>
+					<h3>에러 타이틀</h3>
+					<p>에러 내용 출력합니다.</p>
 					<div class="error-btn">
-						<button type="button" class="btn btn-default" data-dismiss="modal" id="confirmBtn">확인</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<button data-toggle="modal" type="button" data-target="#myModal">모달나와라</button>
 </div>
 
+<%@ include file="/WEB-INF/views/footer.jsp"%>

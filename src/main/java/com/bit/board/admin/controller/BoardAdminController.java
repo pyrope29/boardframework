@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bit.board.admin.model.BoardListDto;
 import com.bit.board.admin.service.BoardAdminService;
@@ -23,5 +24,12 @@ public class BoardAdminController {
 		model.put("menu", list);
 		return "admin/boardmenu";
 	}
+	
+	
+	@RequestMapping(value = "test", method = RequestMethod.GET)
+	public String test() {
+		return "test";
+	}
+	
 	
 }

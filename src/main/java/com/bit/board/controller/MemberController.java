@@ -26,9 +26,9 @@ import com.bit.member.model.MemberDto;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-
-	@Autowired
-	private MemberService memberService;
+	
+		@Autowired
+		private MemberService memberService;
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
@@ -123,7 +123,7 @@ public class MemberController {
 			model.addAttribute("msg", "아이디가 잘못되었습니다");
 			model.addAttribute("url", "login.bit");
 		}
-		return "result";
+		return "info";
 	}
 
 	// --------------------restful 구현-----------------------------------

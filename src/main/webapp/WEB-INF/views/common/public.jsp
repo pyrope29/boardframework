@@ -11,7 +11,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="ko">
 <head>
-	<title>게시판</title>
+	<title>BitCamp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="${root}/css/skin_purple.css" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -32,10 +32,6 @@
 .validate{
 	display:none;
 }
-#validateNullId{
-	display:none;
-}
-
 </style>
 </head>
 <body>

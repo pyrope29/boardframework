@@ -18,10 +18,5 @@
       </footer>  
     </div>
 </div>	<!-- div class container end -->
-
-
-<script src="${root}/js/jquery-2.1.0.js"></script>
-<script src="${root}/js/bootstrap.min.js"></script>
-<script src="${root}/js/bootswatch.js"></script>
 </body>
 </html>

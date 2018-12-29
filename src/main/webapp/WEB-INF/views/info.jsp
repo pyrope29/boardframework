@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <script type="text/javascript">
 $(function(){
 	$("#myModal").modal("show");
@@ -70,12 +69,11 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<div class="error-header">
-
-						<h2 class="error-heading modal-title">Error</h2>
+					<div class="info-header">
+						<h2 class="info-heading modal-title">Error</h2>
 					</div>
 				</div>
-				<div class="modal-body error-body">
+				<div class="info-body error-body">
 					<h4>${msg}</h4>
 					<p></p>
 					<div class="error-btn">
