@@ -6,23 +6,19 @@
 	$(document).ready(function() {
 		$("#delete").click(function() {
 			$("#myModal").modal('show');
-		
 				$("#yBtn").click(function() {
 					$.ajax({
 						url : '${root}/member',
 						type : 'DELETE',
-						contentType : 'application/json;charset=UTF-8',
 						dataType : 'json',
 						success : function(data) {
-							alert("data : " + data.result);
 							location.href = data.result;
 						}
 					});
 				});
 				$("#nBtn").click(function() {
-					return false;
+					$("#myModal").modal('hide');
 				});
-			
 		});
 	});
 </script>
@@ -78,7 +74,7 @@
 	text-align: center;
 }
 </style>
-
+<!-- modal -->
 	<div class="modal fade" role="dialog" id="myModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -142,7 +138,7 @@
 
             <div class="pull-right">
                 <a href="${root}/member/modify.bit" class="btn btn-success btn-default">수정</a>
-                <a href="#" class="btn btn-large btn-default" id="delete">탈퇴</a>
+                <a href="#" class="btn btn-large btn-default" onclick="return false;" id="delete">탈퇴</a>
                 <a href="${root}/member/list.bit" class="btn btn-large btn-default">목록</a>
             </div>
 

@@ -45,8 +45,6 @@ public class MemberController {
 	public String modify(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		
-		System.out.println("모디파이 화면뿌리는 멤디 : " + memberDto.toString());
-		
 		MemberDto member = memberService.selectMember(memberDto.getId());
 		
 		model.addAttribute("id", member.getId());
@@ -59,8 +57,6 @@ public class MemberController {
 		return "member/modify";
 	}
 	
-
-	
 	@RequestMapping(value = "list.bit", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<MemberDto> mList = new ArrayList<MemberDto>();
@@ -69,7 +65,6 @@ public class MemberController {
 		model.addAttribute("mList", mList);
 		return "member/list";
 	}
-
 
 	@RequestMapping(value = "login.bit", method = RequestMethod.GET)
 	public String login() {
@@ -81,7 +76,6 @@ public class MemberController {
 		String id = param.get("id");
 		String pw = param.get("pw");
 		MemberDto memberDto = memberService.selectMember(id);
-		System.out.println(memberDto.toString());
 		
 		if(memberDto.getSts().equals("0")) {
 			model.addAttribute("msg", "탈퇴한 아이디입니다");
@@ -111,11 +105,9 @@ public class MemberController {
 
 	// --------------------restful 구현-----------------------------------
 
-	// 화면갖고오기 create
 	@RequestMapping(method = RequestMethod.POST)
 	public String join(@RequestParam Map<String, String> param, Model model) throws IOException {
 		System.out.println("조인한 아이디 : " + param.get("id"));
-		// session.setAttribute("id", param.get("id"));
 
 		MemberDto memberDto = new MemberDto();
 		memberDto.setId(param.get("id"));
@@ -132,7 +124,6 @@ public class MemberController {
 		if (0 < memberService.insertMember(memberDto)) {
 			model.addAttribute("msg", "회원가입 완료");
 			model.addAttribute("url", "badmin/boardmenu.bit");
-			System.out.println("회원가입 완료되었습니다");
 		}
 		return "info";
 	}
@@ -141,8 +132,6 @@ public class MemberController {
 	public String mypage(HttpSession session, Model model) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		MemberDto member = memberService.selectMember(memberDto.getId());
-
-		member.toString();
 
 		model.addAttribute("id", member.getId());
 		model.addAttribute("name", member.getName());
@@ -155,11 +144,7 @@ public class MemberController {
 		}
 
 		model.addAttribute("pnum", member.getPnum());
-		if (member.getAddr() != null) {
-			model.addAttribute("addr", member.getAddr());
-		} else {
-			model.addAttribute("addr", "");
-		}
+		model.addAttribute("addr", member.getAddr());
 
 		return "member/view";
 	}
@@ -168,61 +153,30 @@ public class MemberController {
 	public @ResponseBody String modifyMember(@RequestBody MemberDto memberDto, HttpSession session, Model model,
 			HttpServletRequest request) {
 		MemberDto member = (MemberDto) session.getAttribute("userInfo");
-		System.out.println("modifyMember 업뎃의 멤디 :"  + memberDto);
 		int cnt=0;
 		if (member != null) {
 			
-			System.out.println("멤버는 널이 아닐때 진입");
 			memberDto.setPw(member.getPw());
 			memberDto.setZcode(member.getZcode());
 			cnt = memberService.updateMember(memberDto);
 		}
-		String msg = "";
 		if (0 < cnt) {
-			msg = "회원수정이 완료되었습니다";
+			model.addAttribute("msg", "회원수정이 완료되었습니다");
+			return "{\"result\" : \"modify.bit\" }" ;
 		} else {
-			msg = "회원수정이 실패했습니다";
+			model.addAttribute("msg", "회원수정이 실패했습니다");
+			model.addAttribute("url", "/member/m");
+			return "{\"result\" : \"history.back()\" }" ;
 		}
-		return msg;
+		
 	}
 	
-	//메소드 delete로 고치기!! TODO
 	@RequestMapping(method = RequestMethod.DELETE)
 	public @ResponseBody String delete(Model model,HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		memberService.deleteMember(memberDto.getId());
 		session.removeAttribute("userInfo");
 		model.addAttribute("msg", "회원탈퇴가 완료되었습니다");
-		model.addAttribute("url", "../badmin/boardmenu.bit");
 		return "{\"result\" : \"badmin/boardmenu.bit\" }" ;
-		
-			
 	}
-	
-
-/*	
-
-	@RequestMapping(value="memo", method=RequestMethod.PUT, headers={"Content-type=application/json"})
-	public @ResponseBody String modify(@RequestBody MemoDto memoDto, HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		if(memberDto != null) {
-			memoDto.setId(memberDto.getId());
-			memoDto.setName(memberDto.getName());
-			int cnt = memoService.modifyMemo(memoDto);
-		}
-		String memolist = memoService.listMemo(memoDto.getSeq());
-		return memolist;
-	}
-	
-	@RequestMapping(value="memo/{seq}/{mseq}", method=RequestMethod.DELETE)
-	public @ResponseBody String delete(@PathVariable(value="seq") int seq, @PathVariable(value="mseq") int mseq) {
-		memoService.deleteMemo(mseq);
-		String memolist = memoService.listMemo(seq);
-		return memolist;
-	}
-}
-
-
-
-*/
 }

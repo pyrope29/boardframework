@@ -22,7 +22,9 @@
 	
 <style>
 .info{
+	color:red;
 	font-size:13px;
+	margin-right:10px;
 }
 .validateInfo{
 	font-size:13px;

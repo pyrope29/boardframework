@@ -157,39 +157,39 @@
 					onsubmit="return formCheck();">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">아이디</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>아이디</label>
 							<div class="col-lg-6">
 								<input type="text" class="form-control" placeholder="아이디"
 									name="id" id="id">
 							</div>
-							<div class="info">* 영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로
+							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로
 								작성하세요.</div>
 							<div class="validateInfo validate" id="validateNullId">
 								아이디를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">이름</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>이름</label>
 							<div class="col-lg-6">
 								<input type="text" class="form-control" placeholder="이름"
 									name="name" id="name">
 							</div>
-							<div class="info">* 이름은 6글자까지 작성 가능합니다.</div>
+							<div class="info">이름은 6글자까지 작성 가능합니다.</div>
 							<div class="validateInfo validate" id="validateNullName">
 								이름을 입력해 주세요</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">비밀번호</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>비밀번호</label>
 							<div class="col-lg-6">
 								<input type="password" class="form-control" placeholder="비밀번호"
 									name="pw" id="pw">
 							</div>
-							<div class="info">* 영문 혹은 영문, 숫자 조합 4자 이상 20자 내로
+							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 내로
 								작성하세요.</div>
 							<div class="validateInfo validate" id="validateNullPw">
 								비밀번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">비밀번호 확인</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>비밀번호 확인</label>
 							<div class="col-lg-6">
 								<input type="password" class="form-control"
 									placeholder="비밀번호 확인" id="pwCheck">
@@ -200,7 +200,7 @@
 								비밀번호가 동일한지 확인해 주세요</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">생년월일</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>생년월일</label>
 
 							<div class="col-lg-6">
 								<input type="text" class="form-control"
@@ -224,20 +224,20 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">전화번호</label>
-
+						
+							<label class="col-lg-2 control-label"><span class="info">*</span>전화번호</label>
 							<div class="col-lg-6">
 								<input type="text" class="form-control"
 									placeholder="전화번호  (입력 예: 010-1234-5678)" name="pnum" id="pnum">
 							</div>
-							<div class="info">* 필수</div>
+							
 							<div class="validate validateInfo" id="pnumCheckDiv">잘못된
 								휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.</div>
 							<div class="validate validateInfo" id="validateNullPnumChk">
 								전화번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">우편번호</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>우편번호</label>
 
 							<div class="col-lg-6">
 								<input type="text" class="form-control"
@@ -247,7 +247,7 @@
 							<div class="validate"></div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label">주소</label>
+							<label class="col-lg-2 control-label"><span class="info">*</span>주소</label>
 
 							<div class="col-lg-6">
 								<input type="text" class="form-control" placeholder="주소"
