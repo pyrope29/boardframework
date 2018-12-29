@@ -18,5 +18,10 @@
       </footer>  
     </div>
 </div>	<!-- div class container end -->
+
+
+<script src="${root}/resources/board/js/bootstrap.min.js"></script>
+<script src="${root}/resources/board/js/bootswatch.js"></script>
+
 </body>
 </html>

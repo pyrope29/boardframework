@@ -43,8 +43,6 @@ $(document).ready(function() {
 <%@ include file="/WEB-INF/views/nav.jsp" %>   
 <%@ include file="/WEB-INF/views/side.jsp"%> 
 		 <div class="col-lg-9">
-		 
-		 
 		 </div>
 	 </div><!-- div row end -->
 <%@ include file="/WEB-INF/views/footer.jsp" %>  

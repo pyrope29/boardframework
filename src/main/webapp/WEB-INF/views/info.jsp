@@ -5,7 +5,6 @@
 <script type="text/javascript">
 $(function(){
 	$("#myModal").modal("show");
-	
 	$("#myModal").on('hidden.bs.modal', function(){
 		location.href="${url}";
 	});
@@ -24,11 +23,11 @@ $(function(){
 	max-width: 500px;
 }
 
-.error-header {
+.info-header {
 	height: 110px;
 	padding: 15px 29px 25px;
 	margin: 0 auto;
-	background-color: #e74c3c;
+	background-color: #18bc9c;
 	color: white;
 	text-align: left;
 	-webkit-border-radius: 15px 15px 0px 0px;
@@ -38,17 +37,12 @@ $(function(){
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 
-.error-heading {
+.info-heading {
 	margin-top: 20px;
 	margin-bottom: 15px;
 }
 
-.error-footer {
-	margin: 0 auto 20px;
-	padding-left: 10px;
-}
-
-.error-body {
+.info-body {
 	margin: 0 15 0 15;
 	background-color: #fff;
 	-webkit-border-radius: 0px 0px 15px 15px;
@@ -59,7 +53,7 @@ $(function(){
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 
-.error-btn {
+.info-btn {
 	margin-top: 20px;
 	text-align: center;
 }
@@ -70,14 +64,14 @@ $(function(){
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="info-header">
-						<h2 class="info-heading modal-title">Error</h2>
+						<h2 class="info-heading modal-title">Info</h2>
 					</div>
 				</div>
-				<div class="info-body error-body">
+				<div class="modal-body info-body">
 					<h4>${msg}</h4>
-					<p></p>
-					<div class="error-btn">
-						<button type="button" class="btn btn-default" data-dismiss="modal" id="confirmBtn">확인</button>
+					<div class="info-btn">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="confirmBtn">확인</button>
 					</div>
 				</div>
 			</div>
@@ -85,3 +79,6 @@ $(function(){
 	</div>
 </div>
 
+
+<script src="${root}/resources/board/js/bootstrap.min.js"></script>
+<script src="${root}/resources/board/js/bootswatch.js"></script>

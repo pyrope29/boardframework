@@ -13,13 +13,12 @@
 <head>
 	<title>BitCamp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="${root}/css/skin_purple.css" type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="${root}/resources/board/css/skin_purple.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 	<script type="text/javascript" src="${root}/js/board.js"></script>
 	
-	<link href="${root}/css/bootstrap.css" rel="stylesheet">
-	<link href="${root}/css/bootswatch.min.css" rel="stylesheet">
-	
+	<link href="${root}/resources/board/css/bootstrap.css" rel="stylesheet">
+	<link href="${root}/resources/board/css/bootswatch.min.css" rel="stylesheet">
 	
 <style>
 .info{
@@ -42,7 +41,3 @@
 	<input type="hidden" id="word" name="word" value="${word}">
 	<input type="hidden" id="seq" name="seq" value="">
 	</form>
-
-<script src="${root}/js/jquery-2.1.0.js"></script>
-<script src="${root}/js/bootstrap.min.js"></script>
-<script src="${root}/js/bootswatch.js"></script>

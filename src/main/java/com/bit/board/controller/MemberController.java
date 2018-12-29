@@ -59,33 +59,13 @@ public class MemberController {
 		return "member/modify";
 	}
 	
-	
-	@RequestMapping(value = "delete.bit", method = RequestMethod.GET)
-	public String delete(Model model,HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		int cnt = 0;
-		if( cnt < memberService.deleteMember(memberDto.getId())) {
-			session.removeAttribute("userInfo");
-			model.addAttribute("msg", "회원탈퇴가 완료되었습니다");
-			model.addAttribute("url", "../badmin/boardmenu.bit");
-			
-		} else {
-			model.addAttribute("msg", "회원탈퇴가 실패했습니다");
-			model.addAttribute("url", "/");
-		}
-		
-		return "result";
-	}
+
 	
 	@RequestMapping(value = "list.bit", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<MemberDto> mList = new ArrayList<MemberDto>();
 		mList = memberService.selectAllMember();
 		
-		/*for(MemberDto m : mList) {
-			System.out.println("m : " + m);
-		}
-		*/
 		model.addAttribute("mList", mList);
 		return "member/list";
 	}
@@ -106,7 +86,7 @@ public class MemberController {
 		if(memberDto.getSts().equals("0")) {
 			model.addAttribute("msg", "탈퇴한 아이디입니다");
 			model.addAttribute("url", "login.bit");
-			return "result";
+			return "error";
 		}
 
 		if (memberDto != null) {
@@ -115,15 +95,18 @@ public class MemberController {
 				session.setAttribute("userInfo", memberDto);
 				System.out.println(memberDto.toString() + "님이 로그인함");
 				model.addAttribute("url", "../badmin/boardmenu.bit");
+				return "info";
 			} else {
 				model.addAttribute("msg", "비밀번호가 잘못되었습니다");
 				model.addAttribute("url", "login.bit");
+				return "error";
 			}
 		} else {
 			model.addAttribute("msg", "아이디가 잘못되었습니다");
 			model.addAttribute("url", "login.bit");
+			return "error";
 		}
-		return "info";
+		
 	}
 
 	// --------------------restful 구현-----------------------------------
@@ -151,7 +134,7 @@ public class MemberController {
 			model.addAttribute("url", "badmin/boardmenu.bit");
 			System.out.println("회원가입 완료되었습니다");
 		}
-		return "result";
+		return "info";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -202,9 +185,22 @@ public class MemberController {
 		}
 		return msg;
 	}
+	
+	//메소드 delete로 고치기!! TODO
+	@RequestMapping(method = RequestMethod.DELETE)
+	public @ResponseBody String delete(Model model,HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		memberService.deleteMember(memberDto.getId());
+		session.removeAttribute("userInfo");
+		model.addAttribute("msg", "회원탈퇴가 완료되었습니다");
+		model.addAttribute("url", "../badmin/boardmenu.bit");
+		return "{\"result\" : \"badmin/boardmenu.bit\" }" ;
+		
+			
+	}
+	
 
 /*	
-
 
 	@RequestMapping(value="memo", method=RequestMethod.PUT, headers={"Content-type=application/json"})
 	public @ResponseBody String modify(@RequestBody MemoDto memoDto, HttpSession session) {
