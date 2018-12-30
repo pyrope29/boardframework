@@ -3,91 +3,30 @@
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
 <script>
-	function formCheck() {
-		if ($("#id").val() == '') {
-			$("#validateNullId").css('display', 'block');
-			$("#id").focus();
-			$('#id').blur(function() {
-				if ($("#id").val() != '') {
-					$("#validateNullId").css('display', 'none');
+	function paramChk(param){
+		if($("#"+param).val().trim() == '') {
+			$("#"+param+"ValidateNull").css('display', 'block');
+			$("#"+param).focus();
+			$("#"+param).blur(function() {
+				if ($("#"+param).val() != '') {
+					$("#"+param+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#name").val() == '') {
-			$("#validateNullName").css('display', 'block');
-			$("#name").focus();
-			$('#name').blur(function() {
-				if ($("#name").val() != '') {
-					$("#validateNullName").css('display', 'none');
-				}
-			});
-			return false;
-		} else if ($("#pw").val() == '') {
-			$("#validateNullPw").css('display', 'block');
-			$("#pw").focus();
-			$('#pw').blur(function() {
-				if ($("#pw").val() != '') {
-					$("#validateNullPw").css('display', 'none');
-				}
-			});
-			return false;
-		} else if ($("#pwCheck").val() == '') {
-			$("#validateNullPwChk").css('display', 'block');
-			$("#pwCheck").focus();
-			$('#pwCheck').blur(function() {
-				if ($("#pwCheck").val() != '') {
-					$("#validateNullPwChk").css('display', 'none');
-				}
-			});
-			return false;
-		} else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		} else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}
-		return true;
+		} 
+	}
 
+	function formCheck() {
+		paramChk("id");
+		paramChk("pw");
+		paramChk("pwCheck");
+		paramChk("bdate");
+		paramChk("pnum");
+		paramChk("zcode");
+		paramChk("addr");
+		
+		return true;
+		
 	}
 
 	$(document).ready(function() {
@@ -186,7 +125,7 @@
 							</div>
 							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로
 								작성하세요.</div>
-							<div class="validateInfo validate" id="validateNullId">
+							<div class="validateInfo validate" id="idValidateNull">
 								아이디를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -196,7 +135,7 @@
 									name="name" id="name">
 							</div>
 							<div class="info">이름은 6글자까지 작성 가능합니다.</div>
-							<div class="validateInfo validate" id="validateNullName">
+							<div class="validateInfo validate" id="nameValidateNull">
 								이름을 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -207,7 +146,7 @@
 							</div>
 							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 내로
 								작성하세요.</div>
-							<div class="validateInfo validate" id="validateNullPw">
+							<div class="validateInfo validate" id="pwValidateNull">
 								비밀번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -218,7 +157,7 @@
 							</div>
 							<div class="validate validateInfo" id="pwCheckDiv">비밀번호가
 								일치하지 않습니다.</div>
-							<div class="validateInfo validate" id="validateNullPwChk">
+							<div class="validateInfo validate" id="pwCheckValidateNull">
 								비밀번호가 동일한지 확인해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -228,7 +167,7 @@
 								<input type="text" class="form-control"
 									placeholder="생년월일 (입력 예: 2000-12-01)" name="bdate" id="bdate">
 							</div>
-							<div class="validateInfo validate" id="validateNullBdate">
+							<div class="validateInfo validate" id="bdateValidateNull">
 								생년월일을 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -257,7 +196,7 @@
 							
 							<div class="validate validateInfo" id="pnumCheckDiv">잘못된
 								휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.</div>
-							<div class="validate validateInfo" id="validateNullPnumChk">
+							<div class="validate validateInfo" id="pnumValidateNull">
 								전화번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -267,7 +206,7 @@
 								<input type="text" class="form-control"
 									placeholder="우편번호 (입력 예: 01234)" name="zcode" id="zcode">
 							</div>
-							<div class="validateInfo validate" id="validateNullZcode">
+							<div class="validateInfo validate" id="zcodeValidateNull">
 								우편번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -277,7 +216,7 @@
 								<input type="text" class="form-control" placeholder="주소"
 									name="addr" id="addr">
 							</div>
-							<div class="validateInfo validate" id="validateNullAddr">
+							<div class="validateInfo validate" id="addrValidateNull">
 								주소를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
