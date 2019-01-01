@@ -26,8 +26,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberDto selectMember(String id) {
-		return sqlSession.getMapper(MemberDao.class).selectMember(id);
+	public MemberDto selectMemberById(String id) {
+		return sqlSession.getMapper(MemberDao.class).selectMemberById(id);
 	}
 
 	@Override

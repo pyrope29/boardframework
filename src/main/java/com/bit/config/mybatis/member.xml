@@ -6,8 +6,8 @@
 <mapper namespace="com.bit.board.dao.MemberDao">
 
 	<insert id="insertMember" parameterType="memberDto">
-		INSERT INTO BOARD_MEMBER (ID,NAME,PW,BDATE,GENDER,PNUM,ZCODE,ADDR,REGDATE,STS) 
- 			VALUES (#{id},#{name},#{pw},TO_DATE(#{bdate},'YY/MM/DD'),
+		INSERT INTO BOARD_MEMBER (MSEQ, ID,NAME,PW,BDATE,GENDER,PNUM,ZCODE,ADDR,REGDATE,STS) 
+ 			VALUES (MSEQ.nextval, #{id},#{name},#{pw},TO_DATE(#{bdate},'YY/MM/DD'),
  			#{gender},#{pnum},#{zcode},#{addr},sysdate,'1')
 	</insert>
 	<update id="updateMember" parameterType="memberDto">
@@ -17,7 +17,7 @@
 				WHERE ID=#{id} 
 	</update>
 
-	<select id="selectMember" parameterType="String" resultType="memberDto">
+	<select id="selectMemberById" parameterType="String" resultType="memberDto">
 		SELECT * FROM BOARD_MEMBER
 			WHERE ID=#{id}
 	</select>

@@ -40,12 +40,24 @@ public class MemberController {
 	public String join() {
 		return "member/join";
 	}
+	
+	@RequestMapping(value = "idchk", method = RequestMethod.POST)
+	public @ResponseBody boolean idCheck(@RequestParam("id") String id){
+		boolean result;
+		MemberDto idcheck = memberService.selectMemberById(id);
+		if(idcheck!=null){ //이미 존재하는 계정
+			result = true;	
+		}else{	//사용 가능한 계정
+			result = false;	
+		}
+		return result;
+	}
 
 	@RequestMapping(value = "modify.bit", method = RequestMethod.GET)
 	public String modify(Model model, HttpSession session) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		
-		MemberDto member = memberService.selectMember(memberDto.getId());
+		MemberDto member = memberService.selectMemberById(memberDto.getId());
 		
 		model.addAttribute("id", member.getId());
 		model.addAttribute("name", member.getName());
@@ -75,15 +87,10 @@ public class MemberController {
 	public String login(@RequestParam Map<String, String> param, Model model, HttpSession session) {
 		String id = param.get("id");
 		String pw = param.get("pw");
-		MemberDto memberDto = memberService.selectMember(id);
+		MemberDto memberDto = memberService.selectMemberById(id);
 		
-		if(memberDto.getSts().equals("0")) {
-			model.addAttribute("msg", "탈퇴한 아이디입니다");
-			model.addAttribute("url", "login.bit");
-			return "error";
-		}
-
 		if (memberDto != null) {
+			
 			if (memberDto.getPw().equals(pw)) {
 				model.addAttribute("msg", id + " 님 환영합니다");
 				session.setAttribute("userInfo", memberDto);
@@ -96,6 +103,12 @@ public class MemberController {
 				return "error";
 			}
 		} else {
+			System.out.println("memberDto :" + memberDto);
+			if(memberDto.getSts().equals("0")) {
+				model.addAttribute("msg", "탈퇴한 아이디입니다");
+				model.addAttribute("url", "login.bit");
+				return "error";
+			}
 			model.addAttribute("msg", "아이디가 잘못되었습니다");
 			model.addAttribute("url", "login.bit");
 			return "error";
@@ -131,7 +144,7 @@ public class MemberController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) {
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		MemberDto member = memberService.selectMember(memberDto.getId());
+		MemberDto member = memberService.selectMemberById(memberDto.getId());
 
 		model.addAttribute("id", member.getId());
 		model.addAttribute("name", member.getName());
@@ -153,22 +166,17 @@ public class MemberController {
 	public @ResponseBody String modifyMember(@RequestBody MemberDto memberDto, HttpSession session, Model model,
 			HttpServletRequest request) {
 		MemberDto member = (MemberDto) session.getAttribute("userInfo");
-		int cnt=0;
 		if (member != null) {
 			
 			memberDto.setPw(member.getPw());
 			memberDto.setZcode(member.getZcode());
-			cnt = memberService.updateMember(memberDto);
 		}
-		if (0 < cnt) {
+		if (0 < memberService.updateMember(memberDto)) {
 			model.addAttribute("msg", "회원수정이 완료되었습니다");
-			return "{\"result\" : \"modify.bit\" }" ;
 		} else {
 			model.addAttribute("msg", "회원수정이 실패했습니다");
-			model.addAttribute("url", "/member/m");
-			return "{\"result\" : \"history.back()\" }" ;
 		}
-		
+		return "{\"result\" : \"modify.bit\" }" ;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)

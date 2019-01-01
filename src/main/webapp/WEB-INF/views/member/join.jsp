@@ -4,98 +4,119 @@
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
 <script>
 	function formCheck() {
-		if ($("#id").val() == '') {
-			$("#validateNullId").css('display', 'block');
+		if($("#id").val().trim() == '') {
+			$("#id"+"ValidateNull").css('display', 'block');
 			$("#id").focus();
-			$('#id').blur(function() {
+			$("#id").blur(function() {
 				if ($("#id").val() != '') {
-					$("#validateNullId").css('display', 'none');
+					$("#id"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#name").val() == '') {
-			$("#validateNullName").css('display', 'block');
+		} 
+		if($("#name").val().trim() == '') {
+			$("#name"+"ValidateNull").css('display', 'block');
 			$("#name").focus();
-			$('#name').blur(function() {
+			$("#name").blur(function() {
 				if ($("#name").val() != '') {
-					$("#validateNullName").css('display', 'none');
+					$("#name"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#pw").val() == '') {
-			$("#validateNullPw").css('display', 'block');
+		} 
+		if($("#pw").val().trim() == '') {
+			$("#pw"+"ValidateNull").css('display', 'block');
 			$("#pw").focus();
-			$('#pw').blur(function() {
+			$("#pw").blur(function() {
 				if ($("#pw").val() != '') {
-					$("#validateNullPw").css('display', 'none');
+					$("#pw"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#pwCheck").val() == '') {
-			$("#validateNullPwChk").css('display', 'block');
+		} 
+		if($("#pwCheck").val().trim() == '') {
+			$("#pwCheck"+"ValidateNull").css('display', 'block');
 			$("#pwCheck").focus();
-			$('#pwCheck').blur(function() {
+			$("#pwCheck").blur(function() {
 				if ($("#pwCheck").val() != '') {
-					$("#validateNullPwChk").css('display', 'none');
+					$("#pwCheck"+"ValidateNull").css('display', 'none');
+				}
+			});
+		} 
+		if($("#bdate").val().trim() == '') {
+			$("#bdate"+"ValidateNull").css('display', 'block');
+			$("#bdate").focus();
+			$("#bdate").blur(function() {
+				if ($("#bdate").val() != '') {
+					$("#bdate"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
+		} 
+		if($("#pnum").val().trim() == '') {
+			$("#pnum"+"ValidateNull").css('display', 'block');
 			$("#pnum").focus();
-			$('#pnum').blur(function() {
+			$("#pnum").blur(function() {
 				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
+					$("#pnum"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
-		} else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
-				}
-			});
-			return false;
-		}else if ($("#pnum").val() == '') {
-			$("#validateNullPnumChk").css('display', 'block');
-			$("#pnum").focus();
-			$('#pnum').blur(function() {
-				if ($("#pnum").val() != '') {
-					$("#validateNullPnumChk").css('display', 'none');
+		} 
+		if($("#zcode").val().trim() == '') {
+			$("#zcode"+"ValidateNull").css('display', 'block');
+			$("#zcode").focus();
+			$("#zcode").blur(function() {
+				if ($("#zcode").val() != '') {
+					$("#zcode"+"ValidateNull").css('display', 'none');
 				}
 			});
 			return false;
 		}
-		return true;
+		if($("#addr").val().trim() == '') {
+			$("#addr"+"ValidateNull").css('display', 'block');
+			$("#addr").focus();
+			$("#addr").blur(function() {
+				if ($("#addr").val() != '') {
+					$("#addr"+"ValidateNull").css('display', 'none');
+				}
+			});
+			return false;
+		} 
+			return true;
 
 	}
 
-	$(document).ready(function() {
+	$(function() {
 
 		var regIdExp = /^[a-z0-9_]{4,20}$/;
+		//아이디 확인
+
+		$('#id').blur(function() {
+			$.ajax({
+				type : "POST",
+				url : "{root}/member/idChk",
+				data : {
+					"id" : $('#id').val()
+				},
+				success : function(data) { 
+					if ($.trim(data) == "YES") {
+						if ($('#id').val() != '') {
+							alert("사용가능한 아이디입니다.");
+						}
+					} else {
+						if ($('#id').val() != '') {
+							alert("중복된 아이디입니다.");
+							$('#id').val('');
+							$('#id').focus();
+						}
+					}
+				}
+			})
+		});
+
 		//비밀번호 확인
 		$('#pwCheck').blur(function() {
-
 			if ($('#pw').val() != $(this).val()) {
 				if ($(this).val() != '') {
 					$("#pwCheckDiv").css('display', 'block');
@@ -106,7 +127,7 @@
 				$("#pwCheckDiv").css('display', 'none');
 			}
 		});
-		
+
 		//전화번호 확인
 		var regPnumExp = /^\d{3}-\d{3,4}-\d{4}$/;
 		$("#pnum").blur(function() {
@@ -143,14 +164,6 @@
 				}
 			});
 		});
-
-		function nullCheck(param) {
-			if (param.value == '') {
-				$(param).val('');
-				$(param).focus();
-			}
-		}
-
 	});
 </script>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -186,7 +199,7 @@
 							</div>
 							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로
 								작성하세요.</div>
-							<div class="validateInfo validate" id="validateNullId">
+							<div class="validateInfo validate" id="idValidateNull">
 								아이디를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -196,7 +209,7 @@
 									name="name" id="name">
 							</div>
 							<div class="info">이름은 6글자까지 작성 가능합니다.</div>
-							<div class="validateInfo validate" id="validateNullName">
+							<div class="validateInfo validate" id="nameValidateNull">
 								이름을 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -207,7 +220,7 @@
 							</div>
 							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 내로
 								작성하세요.</div>
-							<div class="validateInfo validate" id="validateNullPw">
+							<div class="validateInfo validate" id="pwValidateNull">
 								비밀번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -218,7 +231,7 @@
 							</div>
 							<div class="validate validateInfo" id="pwCheckDiv">비밀번호가
 								일치하지 않습니다.</div>
-							<div class="validateInfo validate" id="validateNullPwChk">
+							<div class="validateInfo validate" id="pwCheckValidateNull">
 								비밀번호가 동일한지 확인해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -228,7 +241,7 @@
 								<input type="text" class="form-control"
 									placeholder="생년월일 (입력 예: 2000-12-01)" name="bdate" id="bdate">
 							</div>
-							<div class="validateInfo validate" id="validateNullBdate">
+							<div class="validateInfo validate" id="bdateValidateNull">
 								생년월일을 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -257,7 +270,7 @@
 							
 							<div class="validate validateInfo" id="pnumCheckDiv">잘못된
 								휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.</div>
-							<div class="validate validateInfo" id="validateNullPnumChk">
+							<div class="validate validateInfo" id="pnumValidateNull">
 								전화번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -267,7 +280,7 @@
 								<input type="text" class="form-control"
 									placeholder="우편번호 (입력 예: 01234)" name="zcode" id="zcode">
 							</div>
-							<div class="validateInfo validate" id="validateNullZcode">
+							<div class="validateInfo validate" id="zcodeValidateNull">
 								우편번호를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
@@ -277,13 +290,13 @@
 								<input type="text" class="form-control" placeholder="주소"
 									name="addr" id="addr">
 							</div>
-							<div class="validateInfo validate" id="validateNullAddr">
+							<div class="validateInfo validate" id="addrValidateNull">
 								주소를 입력해 주세요</div>
 						</div>
 						<div class="form-group">
 							<div class="col-lg-6 col-lg-offset-2">
 								<button type="submit" class="btn btn-primary">확인</button>
-								<a href="./login.html" class="btn btn-large btn-default">취소</a>
+								<a href="${root}/member/login" class="btn btn-large btn-default">취소</a>
 							</div>
 						</div>
 					</fieldset>

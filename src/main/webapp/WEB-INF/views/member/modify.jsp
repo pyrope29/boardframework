@@ -14,10 +14,10 @@ $(document).ready(function() {
 	}
 	
 	$("#modifyBtn").on("click", function() {
-		$("#myModal").modal('show');
 		var parameter = JSON.stringify({'id' : $("#id").val(), 'name' :  $("#name").val(), 
 			'bdate' :  $("#bdate").val(), 'gender' : $("input[name=gender]:checked").val(), 'pnum' :  $("#pnum").val(), 
 			'addr' :  $("#addr").val()});
+		
 		$.ajax({
 				url : '${root}/member',
 				type : 'PUT',	
@@ -25,7 +25,11 @@ $(document).ready(function() {
 				dataType : 'json',
 				data : parameter,
 				success : function (data) {
-					location.href = data.result;
+					$("#myModal").modal('show');
+					$("#msg").innerText='회원 수정이 완료되었습니다';
+					$("#myModal").on('hidden.bs.modal',function(){
+						location.href = data.result;
+					});
 				}
 			});
 		});
@@ -78,24 +82,24 @@ $(document).ready(function() {
 	text-align: center;
 }
 </style>
-	<div class="modal fade" role="dialog" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="info-header">
-						<h2 class="info-heading modal-title">Info</h2>
-					</div>
+<div class="modal fade" role="dialog" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="info-header">
+					<h2 class="info-heading modal-title">Info</h2>
 				</div>
-				<div class="modal-body info-body">
-					<h4>${msg}</h4>
-					<div class="info-btn">
-						<button type="button" class="btn btn-default" data-dismiss="modal"
-							id="confirmBtn">확인</button>
-					</div>
+			</div>
+			<div class="modal-body info-body">
+				<h4 id="msg">${msg}</h4>
+				<div class="info-btn">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="confirmBtn">확인</button>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 <!-- Container ======================================================================================= -->
 <div class="container">
 	<div class="row">

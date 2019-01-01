@@ -12,7 +12,7 @@ public interface MemberService {
 	
 	int deleteMember(String id);
 
-	MemberDto selectMember(String id);
+	MemberDto selectMemberById(String id);
 
 	List<MemberDto> selectAllMember();
 

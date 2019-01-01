@@ -10,7 +10,7 @@ public interface MemberDao {
 
 	int updateMember(MemberDto memberDto);
 
-	MemberDto selectMember(String id);
+	MemberDto selectMemberById(String id);
 
 	List<MemberDto> selectAllMember();
 
