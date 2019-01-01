@@ -41,14 +41,14 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	@RequestMapping(value = "idchk", method = RequestMethod.POST)
-	public @ResponseBody boolean idCheck(@RequestParam("id") String id){
-		boolean result;
-		MemberDto idcheck = memberService.selectMemberById(id);
-		if(idcheck!=null){ //이미 존재하는 계정
-			result = true;	
-		}else{	//사용 가능한 계정
-			result = false;	
+	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
+	public @ResponseBody String idCheck(@RequestParam("id") String id){
+		String result;
+		MemberDto CheckedId = memberService.selectMemberById(id);
+		if(CheckedId==null){
+			result = "YES";	
+		}else { 
+			result = "NO";
 		}
 		return result;
 	}
@@ -88,7 +88,7 @@ public class MemberController {
 		String id = param.get("id");
 		String pw = param.get("pw");
 		MemberDto memberDto = memberService.selectMemberById(id);
-		
+		  
 		if (memberDto != null) {
 			
 			if (memberDto.getPw().equals(pw)) {
@@ -176,7 +176,7 @@ public class MemberController {
 		} else {
 			model.addAttribute("msg", "회원수정이 실패했습니다");
 		}
-		return "{\"result\" : \"modify.bit\" }" ;
+		return "modify.bit" ;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)

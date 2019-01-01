@@ -28,7 +28,7 @@ $(document).ready(function() {
 					$("#myModal").modal('show');
 					$("#msg").innerText='회원 수정이 완료되었습니다';
 					$("#myModal").on('hidden.bs.modal',function(){
-						location.href = data.result;
+						location.href = data;
 					});
 				}
 			});

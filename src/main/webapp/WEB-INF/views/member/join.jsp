@@ -25,7 +25,7 @@
 			return false;
 		} 
 		if($("#pw").val().trim() == '') {
-			$("#pw"+"ValidateNull").css('display', 'block');
+			$("#pw"+"ValidateNull").css('display', 'block').text("비밀번호를 입력해 주세요");
 			$("#pw").focus();
 			$("#pw").blur(function() {
 				if ($("#pw").val() != '') {
@@ -42,13 +42,14 @@
 					$("#pwCheck"+"ValidateNull").css('display', 'none');
 				}
 			});
+			return false;
 		} 
 		if($("#bdate").val().trim() == '') {
-			$("#bdate"+"ValidateNull").css('display', 'block');
+			$("#bdate"+"ValidateNull").text("생년월일을 입력해 주세요");
 			$("#bdate").focus();
 			$("#bdate").blur(function() {
 				if ($("#bdate").val() != '') {
-					$("#bdate"+"ValidateNull").css('display', 'none');
+					$("#bdate"+"ValidateNull").text("");
 				}
 			});
 			return false;
@@ -90,46 +91,68 @@
 	$(function() {
 
 		var regIdExp = /^[a-z0-9_]{4,20}$/;
+		var regPwExp = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;
+		var regBdateExp = /^(19[1-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		
 		//아이디 확인
 
 		$('#id').blur(function() {
 			$.ajax({
-				type : "POST",
-				url : "{root}/member/idChk",
+				url : "${root}/member/idCheck",
 				data : {
-					"id" : $('#id').val()
+					"id" : $('#id').val().trim()
 				},
+				type : 'POST',
+				dataType : 'text',
 				success : function(data) { 
-					if ($.trim(data) == "YES") {
-						if ($('#id').val() != '') {
-							alert("사용가능한 아이디입니다.");
+					if (data == "YES") {
+						if ($('#id').val().trim() != '') {
+							$("#idValidateNull").css('display','block').empty();
 						}
 					} else {
-						if ($('#id').val() != '') {
-							alert("중복된 아이디입니다.");
+						if ($('#id').val().trim() != '') {
+							$("#idValidateNull").css('display','block').empty().text("중복된 아이디입니다.");
 							$('#id').val('');
 							$('#id').focus();
 						}
 					}
+				},
+				error : function(request, status, error) {
+					alert("code : " + request.status + "\n" + 
+							"message : " + request.responseText + "\n" + 
+							"error : " + error) ;
 				}
-			})
+			});
 		});
+		
 
-		//비밀번호 확인
+	//비밀번호 확인
+		$('#pw').blur(function() {
+			
+			if (!regPwExp.test($("#pw").val())) {
+				$("#pwValidateNull").css('display', 'block').text("6~20자 영문 대 소문자, 숫자, 특수문자를 혼용해 사용하세요.");
+				$("#pw").focus();
+			} else if (/(\w)\1\1/.test($("#pw").val())) {
+				$("#pwValidateNull").css('display', 'block').text("비밀번호에 동일한 문자를 3번 이상 사용하실 수 없습니다.");
+				$("#pw").focus();
+			} else {
+				$("#pwValidateNull").css('display', 'none');
+			}
+		});
+	
 		$('#pwCheck').blur(function() {
 			if ($('#pw').val() != $(this).val()) {
 				if ($(this).val() != '') {
-					$("#pwCheckDiv").css('display', 'block');
+					$("#pwCheckValidateNull").css('display', 'block').text("비밀번호가 동일한지 확인해 주세요");
 					$(this).val('');
 					$(this).focus();
 				}
 			} else {
-				$("#pwCheckDiv").css('display', 'none');
+				$("#pwCheckValidateNull").css('display', 'none');
 			}
 		});
-
 		//전화번호 확인
-		var regPnumExp = /^\d{3}-\d{3,4}-\d{4}$/;
+		var regPnumExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		$("#pnum").blur(function() {
 			if (!regPnumExp.test($("#pnum").val())) {
 				$("#pnumCheckDiv").css('display', 'block');
@@ -139,6 +162,19 @@
 				$("#pnumCheckDiv").css('display', 'none');
 			}
 		});
+		
+		//생년월일 확인
+		$("#bdate").blur(function() {
+			if (!regBdateExp.test($("#bdate").val())) {
+				$("bdateCheckDiv").css('display', 'block');
+				$(this).val('');
+				$(this).focus();
+			} else {
+				$("#bdateCheckDiv").css('display', 'none');
+			}
+		});
+		
+		
 		//우편번호 화긴 >> 가능하다면 daum api!!! 카페에 있는 그거 써도 ok
 
 		$("#modifyBtn").on("click", function() {
@@ -187,8 +223,7 @@
 			</div>
 			<div class="well">
 				<p>회원가입을 위해 아래 내용들을 작성해 주세요.</p>
-				<form class="form-horizontal" name="joinForm"
-					action="${root}/member" method="post"
+				<form class="form-horizontal" name="joinForm" action="${root}/member" method="post"
 					onsubmit="return formCheck();">
 					<fieldset>
 						<div class="form-group">
@@ -197,8 +232,7 @@
 								<input type="text" class="form-control" placeholder="아이디"
 									name="id" id="id">
 							</div>
-							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로
-								작성하세요.</div>
+							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 이하로 작성하세요.</div>
 							<div class="validateInfo validate" id="idValidateNull">
 								아이디를 입력해 주세요</div>
 						</div>
@@ -208,7 +242,7 @@
 								<input type="text" class="form-control" placeholder="이름"
 									name="name" id="name">
 							</div>
-							<div class="info">이름은 6글자까지 작성 가능합니다.</div>
+							<div class="info">이름은 한글 6자, 영문 12자까지 작성 가능합니다.</div>
 							<div class="validateInfo validate" id="nameValidateNull">
 								이름을 입력해 주세요</div>
 						</div>
@@ -218,10 +252,9 @@
 								<input type="password" class="form-control" placeholder="비밀번호"
 									name="pw" id="pw">
 							</div>
-							<div class="info">영문 혹은 영문, 숫자 조합 4자 이상 20자 내로
-								작성하세요.</div>
-							<div class="validateInfo validate" id="pwValidateNull">
-								비밀번호를 입력해 주세요</div>
+							<!-- <div class="info">영문 혹은 영문, 숫자 조합 6자 이상 20자 내로
+								작성하세요.</div> -->
+							<div class="validateInfo validate" id="pwValidateNull"></div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label"><span class="info">*</span>비밀번호 확인</label>
@@ -229,10 +262,8 @@
 								<input type="password" class="form-control"
 									placeholder="비밀번호 확인" id="pwCheck">
 							</div>
-							<div class="validate validateInfo" id="pwCheckDiv">비밀번호가
-								일치하지 않습니다.</div>
 							<div class="validateInfo validate" id="pwCheckValidateNull">
-								비밀번호가 동일한지 확인해 주세요</div>
+								</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label"><span class="info">*</span>생년월일</label>
@@ -242,7 +273,7 @@
 									placeholder="생년월일 (입력 예: 2000-12-01)" name="bdate" id="bdate">
 							</div>
 							<div class="validateInfo validate" id="bdateValidateNull">
-								생년월일을 입력해 주세요</div>
+								</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label">성별</label>
