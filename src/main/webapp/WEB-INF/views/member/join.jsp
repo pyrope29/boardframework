@@ -166,11 +166,11 @@
 		//생년월일 확인
 		$("#bdate").blur(function() {
 			if (!regBdateExp.test($("#bdate").val())) {
-				$("bdateCheckDiv").css('display', 'block');
+				$("#bdateValidateNull").css('display', 'block').text("올바른 생년월일을 입력해 주세요. 입력 예 (2000-12-01)");
 				$(this).val('');
 				$(this).focus();
 			} else {
-				$("#bdateCheckDiv").css('display', 'none');
+				$("#bdateValidateNull").css('display', 'none');
 			}
 		});
 		
