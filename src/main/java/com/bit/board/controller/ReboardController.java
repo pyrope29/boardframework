@@ -31,18 +31,25 @@ public class ReboardController {
 	private ReboardService reboardService;
 
 	@RequestMapping("list.bit")
-	public ModelAndView list(@RequestParam Map<String, String> param) {
-		System.out.println(param.toString());
-		
+	public ModelAndView list(@RequestParam Map<String, String> param, HttpSession session) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		ModelAndView mav = new ModelAndView();
-		List<ReboardDto> list = reboardService.listArticle(param);
-		PageNavigation navigation = commonService.makePageNavigation(param);
-		navigation.setRoot("/board");
-		navigation.makeNavigator();
-		mav.addObject("articlelist", list);
-		mav.addObject("navigator", navigation);
-		mav.setViewName("reboard/list");
-		return mav;
+		if(memberDto != null) {
+			
+			List<ReboardDto> list = reboardService.listArticle(param);
+			PageNavigation navigation = commonService.makePageNavigation(param);
+			navigation.setRoot("/board");
+			navigation.makeNavigator();
+			mav.addObject("articlelist", list);
+			mav.addObject("navigator", navigation);
+			mav.setViewName("reboard/list");
+			return mav;
+		} else {
+			mav.addObject("msg", "회원전용 게시판입니다. 로그인 해주세요");
+			mav.addObject("url", "login.bit");
+			mav.setViewName("error");
+			return mav;
+		}	
 	}
 	
 	@RequestMapping(value="write.bit", method=RequestMethod.GET)
