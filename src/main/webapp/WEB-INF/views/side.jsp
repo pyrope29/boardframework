@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<style>
+.menu_category{
+	background-color: #2c3e50;
+}
+.menu_body a{
+	background-color: white;
+}
+</style>
 
-<!-- Container ======================================================================================= -->
-
-<div class="container-fluid" style="margin-top:50px">			<!-- div side container-fluid start -->
-	<div class="row">			<!-- div row start -->
+<div class="container-fluid" style="margin-top:50px;">			<!-- div side container-fluid start -->
+	<div class="row" style="height:500px;">			<!-- div row start -->
 		<div class="col-lg-3">	<!-- div -lg-3 start -->
 			<div id="boardmenu" class="menu_list" align="center">
 				<c:set var="idx" value="0"/>
@@ -22,5 +28,6 @@
 					</c:if>
 					</c:if>
 				</c:forEach>
-			</div>
+			</div> 
 		</div> <!-- div lg 3 end -->	
+		

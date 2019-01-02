@@ -1,7 +1,6 @@
 package com.bit.member.model;
 
 public class MemberDto {
-	private String mseq;
 	private String id;
 	private String name;
 	private String pw;
@@ -12,14 +11,6 @@ public class MemberDto {
 	private String bdate;
 	private String regdate;
 	private String sts;
-
-	public String getMseq() {
-		return mseq;
-	}
-
-	public void setMseq(String mseq) {
-		this.mseq = mseq;
-	}
 
 	public String getId() {
 		return id;
@@ -103,7 +94,7 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [mseq=" + mseq + ", id=" + id + ", name=" + name + ", pw=" + pw + ", addr=" + addr
+		return "MemberDto [id=" + id + ", name=" + name + ", pw=" + pw + ", addr=" + addr
 				+ ", gender=" + gender + ", pnum=" + pnum + ", zcode=" + zcode + ", bdate=" + bdate + ", regdate="
 				+ regdate + ", sts=" + sts + "]";
 	}

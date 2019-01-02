@@ -17,7 +17,6 @@
         </div>
       </footer>  
     </div>
-</div>	<!-- div class container end -->
 
 
 <script src="${root}/resources/board/js/bootstrap.min.js"></script>

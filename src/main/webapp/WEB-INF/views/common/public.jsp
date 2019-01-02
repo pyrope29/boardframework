@@ -13,7 +13,7 @@
 <head>
 	<title>BitCamp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="${root}/resources/board/css/skin_purple.css" type="text/css">
+	<link rel="stylesheet" href="${root}/resources/board/css/skin_blue.css" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 	<script type="text/javascript" src="${root}/js/board.js"></script>
 	
@@ -30,9 +30,7 @@
 	font-size:13px;
 	color:red;
 }
-.validate{
-	display:none;
-}
+
 </style>
 </head>
 <body>

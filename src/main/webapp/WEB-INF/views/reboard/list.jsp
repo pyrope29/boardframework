@@ -48,8 +48,8 @@ $(document).ready(function() {
 });
 
 </script>
-<!-- title start -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<%@ include file="/WEB-INF/views/nav.jsp" %>   
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:50px;">
 	<tr>
 		<td><img src="${root}/img/board/m_icon_board.gif" width="9"
 			height="9" border="0" align="absmiddle" style="margin-top: -2px">

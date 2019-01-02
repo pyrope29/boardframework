@@ -10,8 +10,10 @@
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="#">BitCamp</a>
+	            <a class="navbar-brand" href="${root}/badmin/boardmenu.bit">BitCamp</a>
 	        </div>
+	        
+	        
 	        <div class="navbar-collapse collapse navbar-responsive-collapse">
 	            <ul class="nav navbar-nav">
 	                <li class="active">

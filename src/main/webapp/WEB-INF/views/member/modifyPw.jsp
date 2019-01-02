@@ -5,51 +5,39 @@
 <%@ include file="/WEB-INF/views/nav.jsp"%>  
 <script>
 $(function() {
-	var gender = '${gender}';
-	if(gender=='1'){
-		$('input:radio[name=gender]:input[value=1]').prop("checked", true);
-
-	} else if (gender=='2'){
-		$('input:radio[name=gender]:input[value=2]').prop("checked", true);
-	}
 	
 	$("#modifyBtn").on("click", function() {
 		
-		var parameter = JSON.stringify({'id' : $("#id").val(), 'name' :  $("#name").val(), 
-			'bdate' :  $("#bdate").val(), 'gender' : $("input[name=gender]:checked").val(), 'pnum' :  $("#pnum").val(), 
-			'zcode' :  $("#zcode").val(), 'addr' :  $("#addr").val()});
-		
 		$.ajax({
-				url : '${root}/member',
+				url : '${root}/member/modifyPw',
 				type : 'PUT',	
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
-				data : parameter,
+				data : {'pw' : $("#newPwCheck").val()},
 				success : function (data) {
 					if(data.result == "YES"){
 						$("#infoModal").modal('show');
-						$(".msg").text('회원 수정이 완료되었습니다'); 
+						$(".msg").text('비밀번호 수정이 완료되었습니다'); 
 					} else if (data.result == "NO"){
 						$("#errorModal").modal('show');
-						$(".msg").text('회원 수정이 실패했습니다');
+						$(".msg").text('비밀번호 수정이 실패했습니다');
 						$('#errorModal').on('hidden.bs.modal', function () {
-							location.href="${root}/member/modify.bit";
+							location.href="${root}/member/modifyPw.bit";
 						});
 					} 
 				},
 				 error:function(request,status,error){
 				 	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				 	$("#errorModal").modal('show');
-					$(".msg").text('회원 수정 실패했습니다');
+					$(".msg").text('비밀번호 수정 실패했습니다');
 					$('#errorModal').on('hidden.bs.modal', function () {
-						location.href="${root}/member/modify.bit";
+						location.href="${root}/member/modifyPw.bit";
 					});
 				 }
 			});
 		});
 	});	
-</script>
-<style type="text/css">
+</script><style type="text/css">
 .modal-header {
 	padding: 0;
 }
@@ -185,7 +173,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
-
 <!-- Container ======================================================================================= -->
 <div class="container">
 	<div class="row">
@@ -205,45 +192,20 @@ $(function() {
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="text-center">ID</th>
+                        <th class="text-center">현재 비밀번호</th>
                         <td class="text-left">
-                        	<input type="text" class="form-control" name="id" id="id" placeholder="아이디" value="${id}" readonly>
-                        </td>
-                        <th class="text-center">회원명</th>
+                        	<input type="password" class="form-control" name="pw" id="pw" placeholder="현재 비밀번호">
+                    </tr>
+                    <tr>
+                        <th class="text-center">새 비밀번호</th>
                         <td class="text-left">
-                        	<input type="text" class="form-control" name="name" id="name" placeholder="회원명" value="${name}">
+                        	<input type="password" class="form-control" name="newPw" id="newPw" placeholder="새 비밀번호"> 	
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-center">생년월일</th>
-                        <td class="text-left">                        
-                        	<input type="text" class="form-control" name="bdate" id="bdate" placeholder="생년월일" value="${bdate}">                       	
-                        </td>
-                        <th class="text-center">성별</th>
+                    	<th class="text-center">새 비밀번호 확인</th>
                         <td class="text-left">
-                        	<div class="radio">
-	                            <label>
-	                                <input type="radio" name="gender" value="1">
-	                                남자
-	                            </label>
-	                        </div>
-	                        <div class="radio">
-	                            <label>
-	                                <input type="radio" name="gender" value="2">
-	                                여자
-	                            </label>
-	                        </div>	                       	
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center">전화번호</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="pnum" id="pnum" placeholder="전화번호" value="${pnum}"> 	
-                        </td>
-                        <th class="text-center">주소</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="zcode" id="zcode" placeholder="우편번호" value="${zcode}">	
-                        	<input type="text" class="form-control" name="addr" id="addr" placeholder="주소" value="${addr}">	
+                        	<input type="password" class="form-control" name="newPwCheck" id="newPwCheck" placeholder="새 비밀번호 확인">	
                        	</td>
                     </tr>
                     </tbody>
@@ -251,7 +213,6 @@ $(function() {
             </div>
             
             <div class="pull-right">
-            	 <a href="${root}/member/modifyPw.bit" class="btn btn-success btn-default">비밀번호 변경</a>
                 <a href="#" id="modifyBtn" class="btn btn-success btn-default">저장</a>
                 <a href="${root}/member/list.bit" class="btn btn-large btn-default">목록</a>
             </div>

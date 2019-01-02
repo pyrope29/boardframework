@@ -3,32 +3,90 @@
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
 <script>
-	function paramChk(param){
-		if($("#"+param).val().trim() == '') {
-			$("#"+param+"ValidateNull").css('display', 'block');
-			$("#"+param).focus();
-			$("#"+param).blur(function() {
-				if ($("#"+param).val() != '') {
-					$("#"+param+"ValidateNull").css('display', 'none');
-				}
-			});
-			return false;
-		} 
+function formCheck() {/* 
+	if($("#id").val().trim() == '') {
+		$("#id"+"ValidateNull").text("아이디를 입력해 주세요");
+		$("#id").focus();
+		$("#id").blur(function() {
+			if ($("#id").val() != '') {
+				$("#id"+"ValidateNull").empty();
+			}
+		});
+		return false;
+	} 
+	if($("#name").val().trim() == '') {
+		$("#name"+"ValidateNull").text("이름을 입력해 주세요");
+		$("#name").focus();
+		$("#name").blur(function() {
+			if ($("#name").val() != '') {
+				$("#name"+"ValidateNull").empty();
+			}
+		});
+		return false;
+	} 
+	if($("#pw").val().trim() == '') {
+		$("#pw"+"ValidateNull").text("비밀번호를 입력해 주세요");
+		$("#pw").focus();
+		$("#pw").blur(function() {
+			if ($("#pw").val() != '') {
+				$("#pw"+"ValidateNull").empty();
+			}
+		});
+		return false;
+	} 
+	if($("#pwCheck").val().trim() == '') {
+		$("#pwCheck"+"Validate").text("비밀번호가 동일한지 확인해 주세요");
+		$("#pwCheck").focus();
+		$("#pwCheck").blur(function() {
+			if ($("#pwCheck").val() != '') {
+				$("#pwCheck"+"Validate").empty();
+			}
+		});
+		return false;
+	} 
+	if($("#bdate").val().trim() == '') {
+		$("#bdate"+"ValidateNull").text("생년월일을 입력해 주세요");
+		$("#bdate").focus();
+		$("#bdate").blur(function() {
+			if ($("#bdate").val() != '') {
+				$("#bdate"+"ValidateNull").text("");
+			}
+		});
+		return false;
+	} 
+	if($("#pnum").val().trim() == '') {
+		$("#pnum"+"ValidateNull").text("전화번호를 입력해 주세요");
+		$("#pnum").focus();
+		$("#pnum").blur(function() {
+			if ($("#pnum").val() != '') {
+				$("#pnum"+"ValidateNull").empty();
+			}
+		});
+		return false;
+	} 
+	if($("#zcode").val().trim() == '') {
+		$("#zcode"+"ValidateNull").text("우편번호를 입력해 주세요");
+		$("#zcode").focus();
+		$("#zcode").blur(function() {
+			if ($("#zcode").val() != '') {
+				$("#zcode"+"ValidateNull").empty();
+			}
+		});
+		return false;
 	}
-
-	function formCheck() {
-		paramChk("id");
-		paramChk("pw");
-		paramChk("pwCheck");
-		paramChk("bdate");
-		paramChk("pnum");
-		paramChk("zcode");
-		paramChk("addr");
-		
+	if($("#addr").val().trim() == '') {
+		$("#addr"+"ValidateNull").text("주소를 입력해 주세요");
+		$("#addr").focus();
+		$("#addr").blur(function() {
+			if ($("#addr").val() != '') {
+				$("#addr"+"ValidateNull").empty();
+			}
+		});
+		return false;
+	} 
 		return true;
-		
-	}
-
+*/
+}
 	$(document).ready(function() {
 
 		var regIdExp = /^[a-z0-9_]{4,20}$/;

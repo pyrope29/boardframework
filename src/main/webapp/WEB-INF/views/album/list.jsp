@@ -13,8 +13,6 @@ $(document).ready(function() {
 	});
 	
 	$(".posting").click(function() {
-		//alert($(this).children().first().text());
-		//alert(">>>>" + $(this).attr("article-no"));
 		$("#seq").val($(this).attr("article-no"));
 		$("#commonForm").attr("method", "get").attr("action", viewpath).submit();
 	});

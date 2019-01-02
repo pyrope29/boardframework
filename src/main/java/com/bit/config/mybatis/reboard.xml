@@ -7,15 +7,15 @@
 
 	<insert id="writeArticle" parameterType="reboardDto">
 	insert all
-		into board (seq, name, id, email, subject, content, hit, logtime, bcode)
-		values (#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+		into board (seq, name, id, subject, content, hit, logtime, bcode)
+		values (#{seq}, #{name}, #{id}, #{subject}, #{content}, 0, sysdate, #{bcode})
 		into reboard (rseq, seq, ref, lev, step, pseq, reply)
 		values (reboard_rseq.nextval, #{seq}, #{ref}, 0, 0, 0, 0)
 	select * from dual	
 	</insert>
 	
 	<select id="viewArticle" parameterType="int" resultType="reboardDto">
-	select b.seq, b.name, b.id, b.email, b.subject, b.content, b.hit, b.bcode,
+	select b.seq, b.name, b.id, b.subject, b.content, b.hit, b.bcode,
 			b.logtime, r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply
 	from board b, reboard r
 	where b.seq = r.seq
@@ -27,7 +27,7 @@
 	from (
 		select rownum rn, a.*
 		from (
-			select b.seq, b.name, b.id, b.email, b.subject, b.content, b.hit, b.bcode,
+			select b.seq, b.name, b.id, b.subject, b.content, b.hit, b.bcode,
 					decode(to_char(b.logtime, 'yymmdd'),
 							to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'),
 							to_char(b.logtime, 'yy.mm.dd')) logtime,
@@ -63,8 +63,8 @@
 	
 	<insert id="replyArticle" parameterType="reboardDto">
 	insert all
-		into board (seq, name, id, email, subject, content, hit, logtime, bcode)
-		values (#{seq}, #{name}, #{id}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+		into board (seq, name, id, subject, content, hit, logtime, bcode)
+		values (#{seq}, #{name}, #{id}, #{subject}, #{content}, 0, sysdate, #{bcode})
 		into reboard (rseq, seq, ref, lev, step, pseq, reply)
 		values (reboard_rseq.nextval, #{seq}, #{ref}, #{lev} + 1, #{step} + 1, #{pseq}, 0)
 	select * from dual	
